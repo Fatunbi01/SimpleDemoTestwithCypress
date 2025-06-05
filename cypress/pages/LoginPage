@@ -1,0 +1,43 @@
+//page.js
+class LoginPage {
+  get url() {
+    return 'https://trytestingthis.netlify.app/'; //This is a get method that returns the URL of the login page.
+  }
+
+  get usernameInput() {
+    return '#uname'; // This is a get method that returns the selector for the username input field.
+  }
+
+  get passwordInput() {
+    return '#pwd'; // This is a get method that returns the selector for the password input field.
+  }
+
+  get submitButton() {
+    return '[type="submit"]';// This is a get method that returns the selector for the submit button.
+  }
+
+  visit() {
+    cy.visit(this.url); // This method navigates to the login page using the URL defined earlier.
+  }
+
+  enterUsername(username) {
+    cy.get(this.usernameInput).type(username); // This method types the provided username into the username input field.
+  }
+
+  enterPassword(password) {
+    cy.get(this.passwordInput).type(password); // This method types the provided password into the  input field.
+  }
+
+  submit() {
+    cy.get(this.submitButton).click(); // This method clicks the submit button to log in.
+  }
+
+  login(username, password) { //This method combines the previous methods to perform a complete login action: visiting the page, entering the username and password, and clicking the submit button.
+    this.visit();
+    this.enterUsername(username);
+    this.enterPassword(password);
+    this.submit();
+  }
+}
+
+export default LoginPage; // This makes the LoginPage class available for import in other files.
